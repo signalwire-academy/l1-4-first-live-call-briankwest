@@ -25,7 +25,14 @@ pip install -r requirements.txt
 
 ### 2. Implement Your Solution
 
-Edit `solution/agent.py` according to the lab requirements.
+Edit `solution/agent.py` according to the lab requirements:
+
+1. Create an AgentBase instance with a name
+2. Add at least one prompt section (e.g., "Role")
+3. Configure a language with voice and fillers using `add_language()`
+   - Use `speech_fillers` for what the agent says while thinking (e.g., "Um", "Uh")
+   - Use `function_fillers` for what the agent says during tool calls (e.g., "One moment please")
+   - **Note:** When both `speech_fillers` AND `function_fillers` are provided, they appear as separate fields in the SWML output
 
 ### 3. Test Locally
 

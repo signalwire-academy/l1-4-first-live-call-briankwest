@@ -33,8 +33,15 @@ agent.prompt_add_section(
     ]
 )
 
-# Voice configuration
-agent.add_language("English", "en-US", "rime.spore")
+# Voice configuration with fillers
+# Using both speech_fillers and function_fillers outputs them as separate fields
+agent.add_language(
+    name="English",
+    code="en-US",
+    voice="rime.spore",
+    speech_fillers=["Um", "Uh", "Well", "Let me think"],
+    function_fillers=["One moment please", "Let me check that for you"]
+)
 
 if __name__ == "__main__":
     agent.run()
