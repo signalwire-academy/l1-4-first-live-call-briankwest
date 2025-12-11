@@ -1,7 +1,47 @@
 #!/usr/bin/env python3
-"""Lab 1.4: First Live Call - Your Solution
+"""Agent ready for live calls with authentication.
 
-Implement your solution here according to the lab requirements.
+Lab 1.4 Deliverable: Production-ready agent configured for live calls
+with basic authentication, prompts, and voice settings.
+
+Environment variables:
+    SWML_BASIC_AUTH_USER: Basic auth username (auto-detected by SDK)
+    SWML_BASIC_AUTH_PASSWORD: Basic auth password (auto-detected by SDK)
 """
 
-# Your code here
+from signalwire_agents import AgentBase
+
+agent = AgentBase(
+    name="live-agent",
+    route="/agent"
+)
+
+# Prompt configuration
+agent.prompt_add_section(
+    "Role",
+    "You are a friendly training assistant for SignalWire. "
+    "Greet callers warmly and have a brief conversation. "
+    "Ask them what they're learning about today."
+)
+
+agent.prompt_add_section(
+    "Guidelines",
+    bullets=[
+        "Keep responses brief - this is a phone call",
+        "Be enthusiastic about voice AI",
+        "If asked about SignalWire, say you're a demo agent"
+    ]
+)
+
+# Voice configuration with fillers
+# Using both speech_fillers and function_fillers outputs them as separate fields
+agent.add_language(
+    name="English",
+    code="en-US",
+    voice="rime.spore",
+    speech_fillers=["Um", "Uh", "Well", "Let me think"],
+    function_fillers=["One moment please", "Let me check that for you"]
+)
+
+if __name__ == "__main__":
+    agent.run()
